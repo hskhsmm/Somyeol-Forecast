@@ -128,7 +128,9 @@ src/
 
 ## ERD
 
+![somyeolERD](https://github.com/user-attachments/assets/1f795970-f2c6-4924-ba12-89bd428dd15c)
 
 
 ## 아키텍처
 
+![somyeol_architecture](https://github.com/user-attachments/assets/e70ba20f-8ab3-4719-af6c-e247fff61556)
