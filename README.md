@@ -34,94 +34,19 @@
 ````
 src/
 └── main/
-├── java/
-│ └── com/somyeol/cityforecast/
-│ ├── CityForecastApplication.java
-│       ├── domain/
-│       │   ├── region/
-│       │   │   ├── controller/
-│       │   │   │   └── RegionController.java
-│       │   │   ├── dto/
-│       │   │   │   └── RegionResponseDto.java
-│       │   │   ├── entity/
-│       │   │   │   └── Region.java
-│       │   │   ├── repository/
-│       │   │   │   └── RegionRepository.java
-│       │   │   └── service/
-│       │   │       └── RegionService.java
+    ├── java/com/somyeol/cityforecast/
+    │   ├── CityForecastApplication.java
+    │   ├── domain/
+    │   │   ├── region/       # 지역 이름, 위도경도, 시도 등 처리
+    │   │   ├── population/   # 연도별 인구 통계 처리
+    │   │   ├── forecast/     # 소멸 위험 예측 처리
+    │   │   ├── info/         # 지역 설명 및 부가 정보
+    │   │   └── search/       # 검색 기능
+    │   └── global/           # 공통 설정 및 유틸
+    └── resources/
+        ├── static/js/        # JS 시각화 (지도, 차트, 북마크 등)
+        └── templates/        # JSP 뷰
 
-│       │   ├── population/
-│       │   │   ├── controller/
-│       │   │   │   └── PopulationController.java (optional)
-│       │   │   ├── dto/
-│       │   │   │   └── PopulationDto.java
-│       │   │   ├── entity/
-│       │   │   │   └── PopulationStat.java
-│       │   │   ├── repository/
-│       │   │   │   └── PopulationRepository.java
-│       │   │   └── service/
-│       │   │       └── PopulationService.java
-
-│       │   ├── forecast/
-│       │   │   ├── controller/
-│       │   │   │   └── ForecastController.java
-│       │   │   ├── dto/
-│       │   │   │   └── ForecastResponseDto.java
-│       │   │   ├── entity/
-│       │   │   │   ├── ForecastResult.java
-│       │   │   │   └── RiskLevel.java
-│       │   │   ├── repository/
-│       │   │   │   └── ForecastRepository.java
-│       │   │   └── service/
-│       │   │       └── ForecastService.java
-
-│       │   ├── info/
-│       │   │   ├── controller/
-│       │   │   │   └── InfoController.java
-│       │   │   ├── dto/
-│       │   │   │   └── RegionInfoDto.java
-│       │   │   ├── entity/
-│       │   │   │   └── RegionInfo.java
-│       │   │   ├── repository/
-│       │   │   │   └── RegionInfoRepository.java
-│       │   │   └── service/
-│       │   │       └── RegionInfoService.java
-
-│       │   └── search/
-│       │       ├── controller/
-│       │       │   └── SearchController.java
-│       │       ├── dto/
-│       │       │   └── SearchDto.java
-│       │       └── service/
-│       │           └── SearchService.java
-
-│       ├── global/
-│       │   ├── base/
-│       │   │   └── BaseTimeEntity.java
-│       │   ├── config/
-│       │   │   ├── WebConfig.java
-│       │   │   └── SwaggerConfig.java
-│       │   ├── exception/
-│       │   │   ├── GlobalExceptionHandler.java
-│       │   │   ├── NotFoundException.java
-│       │   │   └── ErrorResponse.java
-│       │   └── util/
-│       │       ├── DateUtils.java
-│       │       ├── RegionUtil.java
-│       │       └── EnumUtils.java
-
-└── resources/
-    ├── static/js/
-    │   ├── map.js
-    │   ├── chart.js
-    │   ├── bookmark.js
-    │   └── search.js
-    ├── templates/
-    │   ├── index.jsp
-    │   ├── popup.jsp
-    │   ├── top10.jsp
-    │   └── fragments.jsp
-    └── application.yml
 
 ````
 
