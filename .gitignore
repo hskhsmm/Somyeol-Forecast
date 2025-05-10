@@ -1,3 +1,6 @@
+# Application Configuration Files
+src/main/resources/application.yml
+
 HELP.md
 .gradle
 build/
