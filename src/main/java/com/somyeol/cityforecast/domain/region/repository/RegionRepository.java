@@ -6,21 +6,17 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface RegionRepository extends JpaRepository<Region, Long> {
 
-    Optional<Region> findByName(String name);
-
     List<Region> findByProvince(String province);
 
-    @Query("SELECT r FROM Region r WHERE r.currentPopulation < :populationThreshold")
-    List<Region> findByPopulationLessThan(int populationThreshold);
+    Region findByNameAndProvince(String name, String province);
 
-    @Query("SELECT r FROM Region r WHERE r.currentPopulation < :populationThreshold ORDER BY r.currentPopulation ASC")
-    List<Region> findSmallestRegions(int populationThreshold);
+    @Query("SELECT r FROM Region r WHERE r.currentPopulation < 50000 ORDER BY r.predictedExtinctYear ASC")
+    List<Region> findAllAtRiskRegions();
 
-    @Query("SELECT r FROM Region r WHERE r.name LIKE %:keyword% OR r.province LIKE %:keyword%")
-    List<Region> searchByKeyword(String keyword);
+    @Query("SELECT r FROM Region r ORDER BY r.avgDeclineRate DESC LIMIT 10")
+    List<Region> findTop10ByDeclineRate();
 }
