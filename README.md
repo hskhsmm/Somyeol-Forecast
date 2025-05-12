@@ -36,58 +36,27 @@
 src/
 └── main/
 ├── java/com/somyeol/cityforecast/
-│ ├── CityForecastApplication.java
+│ ├── CityForecastApplication.java # Spring Boot 메인 클래스
 │   ├── domain/
-│   │   ├── region/              # 지역 기본 정보 엔티티/서비스/컨트롤러
-│   │   │   ├── controller/
-│   │   │   │   └── RegionController.java
-│   │   │   ├── dto/
-│   │   │   │   └── RegionResponseDto.java
-│   │   │   ├── entity/
-│   │   │   │   └── Region.java
-│   │   │   ├── repository/
-│   │   │   │   └── RegionRepository.java
-│   │   │   └── service/
-│   │   │       ├── RegionService.java
-│   │   │       └── RegionDataInitializer.java
-
-│   │   └── regioninfo/          # 지역 특산물/축제/관광지 정보
-│   │       ├── dto/
-│   │       │   └── RegionInfoDto.java
-│   │       ├── entity/
-│   │       │   └── RegionInfo.java
-│   │       ├── repository/
-│   │       │   └── RegionInfoRepository.java
-│   │       └── service/
-│   │           └── RegionInfoService.java
+│   │   ├── region/                     # 지역 정보 (Entity, Service, Controller, CSV 초기화)
+│   │   └── regioninfo/                 # 특산물, 축제, 관광지 정보
 
 │   └── global/
-│       ├── config/
-│       │   └── WebConfig.java
-│       ├── exception/
-│       │   └── GlobalExceptionHandler.java
-│       └── base/
-│           └── BaseTimeEntity.java
+│       ├── config/                     # 웹 설정 (CORS 등)
+│       ├── exception/                  # 전역 예외 처리
+│       └── base/                       # 공통 BaseTimeEntity
 
 └── resources/
-    ├── static/js/
-    │   ├── map.js               # Leaflet 기반 지도 렌더링
-    │   ├── chart.js             # Chart.js 그래프
-    │   └── bookmark.js          # 즐겨찾기 기능
+    ├── static/js/                      # JS 파일 (지도, 그래프, 즐겨찾기)
+    ├── templates/                      # JSP 뷰 (index, popup, fragments)
+    ├── data/                           # CSV 데이터 파일 (region.csv, region_info.csv)
+    └── application.yml                 # DB 및 서버 설정
 
-    ├── templates/
-    │   ├── index.jsp            # 메인 페이지
-    │   ├── popup.jsp            # 지역 상세 팝업
-    │   └── fragments.jsp        # 공통 레이아웃
-
-    ├── data/
-    │   ├── region.csv           # 지역 기본 정보 CSV
-    │   └── region_info.csv      # 특산물/축제/관광지 CSV
-
-    └── application.yml          # DB 및 서버 설정
 ````
 
 ## ERD
+![somyeol_erd_final](https://github.com/user-attachments/assets/6138e341-3917-423c-a454-bdb6cb4aa4e6)
+
 
 <br>
 <br>
@@ -95,6 +64,7 @@ src/
 
 ## Architecture
 
+![somyeol_architecture](https://github.com/user-attachments/assets/277cadd0-0f57-4f7e-a5c5-1b8455f1c705)
 
 
 
