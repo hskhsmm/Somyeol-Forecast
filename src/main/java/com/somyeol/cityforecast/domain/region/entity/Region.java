@@ -36,7 +36,7 @@ public class Region extends BaseTimeEntity {
     private Integer currentPopulation;
 
     @Column(name = "population_50yr_ago", nullable = false)
-    private Integer population50yrAgo;
+    private Integer population50yrAgo;  // 20yr에서 50yr로 변경
 
     @Column(name = "avg_decline_rate", nullable = false)
     private Float avgDeclineRate;
@@ -45,10 +45,10 @@ public class Region extends BaseTimeEntity {
     private Integer predictedExtinctYear;
 
     public enum RiskLevel {
-        DANGER,    // 높은 소멸 위험 (인구 감소율 높음)
-        WARNING,   // 잠재적 소멸 위험 (인구 감소율 중간)
-        CAUTION,   // 주의 단계 (인구 감소율 낮음)
-        SAFE       // 안전 (인구 증가 또는 유지)
+        DANGER,    // 2100년 미만에 소멸 예상
+        WARNING,   // 2100-2199년에 소멸 예상
+        CAUTION,   // 2200-2299년에 소멸 예상
+        SAFE       // 2300년 이후에 소멸 예상
     }
 
     @Enumerated(EnumType.STRING)
@@ -60,19 +60,16 @@ public class Region extends BaseTimeEntity {
         this.predictedExtinctYear = year;
     }
 
-    // 인구 감소율에 따른 위험도 계산 메서드
+    // 소멸 예상 연도에 따른 위험도 계산 메서드
     public void calculateRiskLevel() {
-        // 인구 증가 또는 유지인 경우 (avgDeclineRate가 0 이하)
-        if (this.avgDeclineRate <= 0) {
-            this.riskLevel = RiskLevel.SAFE;
-        }
-        // 인구 감소율에 따른 위험도 분류
-        else if (this.avgDeclineRate > 3.0) {
+        if (this.predictedExtinctYear < 2100) {
             this.riskLevel = RiskLevel.DANGER;
-        } else if (this.avgDeclineRate > 1.5) {
+        } else if (this.predictedExtinctYear < 2200) {
             this.riskLevel = RiskLevel.WARNING;
-        } else {
+        } else if (this.predictedExtinctYear < 2300) {
             this.riskLevel = RiskLevel.CAUTION;
+        } else {
+            this.riskLevel = RiskLevel.SAFE;
         }
     }
 }
