@@ -99,13 +99,14 @@ public class RegionDataInitializer implements CommandLineRunner {
         // 데이터 읽기
         while ((line = reader.readLine()) != null) {
             String[] data = line.split(",");
-            if (data.length >= 6) {
+            if (data.length >= 7) {  // 필드 개수 7개로 증가
                 Long id = Long.parseLong(data[0]);
                 Long regionId = Long.parseLong(data[1]);
                 String specialty = data[2];
                 String festival = data[3];
                 String attraction = data[4];
                 String imageUrl = data[5];
+                String websiteUrl = data[6];  // 추가된 필드
 
                 Region region = regionRepository.findById(regionId)
                         .orElseThrow(() -> new IllegalStateException("Region not found with id: " + regionId));
@@ -117,6 +118,7 @@ public class RegionDataInitializer implements CommandLineRunner {
                         .festival(festival)
                         .attraction(attraction)
                         .imageUrl(imageUrl)
+                        .websiteUrl(websiteUrl)  // 추가된 필드
                         .build();
 
                 regionInfoRepository.save(regionInfo);

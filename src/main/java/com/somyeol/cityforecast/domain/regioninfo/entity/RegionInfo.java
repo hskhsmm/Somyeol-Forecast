@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+// src/main/java/com/somyeol/cityforecast/domain/regioninfo/entity/RegionInfo.java
 @Entity
 @Table(name = "region_info")
 @Getter
@@ -35,4 +36,7 @@ public class RegionInfo extends BaseTimeEntity {
 
     @Column(name = "image_url")
     private String imageUrl;
+
+    @Column(name = "website_url")  // 추가된 필드
+    private String websiteUrl;
 }

@@ -18,6 +18,7 @@ public class RegionInfoDto {
     private String festival;
     private String attraction;
     private String imageUrl;
+    private String websiteUrl;  // 추가된 필드
 
     public static RegionInfoDto fromEntity(RegionInfo regionInfo) {
         return RegionInfoDto.builder()
@@ -27,6 +28,7 @@ public class RegionInfoDto {
                 .festival(regionInfo.getFestival())
                 .attraction(regionInfo.getAttraction())
                 .imageUrl(regionInfo.getImageUrl())
+                .websiteUrl(regionInfo.getWebsiteUrl())  // 추가된 필드
                 .build();
     }
 }
