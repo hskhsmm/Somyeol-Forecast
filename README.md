@@ -40,12 +40,10 @@ src/
 │   ├── domain/
 │   │   ├── region/                     # 지역 정보 (Entity, Service, Controller, CSV 초기화)
 │   │   └── regioninfo/                 # 특산물, 축제, 관광지 정보
-
 │   └── global/
 │       ├── config/                     # 웹 설정 (CORS 등)
 │       ├── exception/                  # 전역 예외 처리
 │       └── base/                       # 공통 BaseTimeEntity
-
 └── resources/
     ├── static/js/                      # JS 파일 (지도, 그래프, 즐겨찾기)
     ├── templates/                      # JSP 뷰 (index, popup, fragments)
