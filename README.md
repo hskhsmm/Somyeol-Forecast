@@ -55,7 +55,8 @@ src/
 ````
 
 ## ERD
-![somyeol_erd_final](https://github.com/user-attachments/assets/6138e341-3917-423c-a454-bdb6cb4aa4e6)
+
+![스크린샷 2025-05-12 173654](https://github.com/user-attachments/assets/b0a01803-f334-4cfd-aed3-336581502d63)
 
 
 <br>
