@@ -45,9 +45,10 @@ public class Region extends BaseTimeEntity {
     private Integer predictedExtinctYear;
 
     public enum RiskLevel {
-        HIGH,   // 0 ~ 20,000명
-        MEDIUM, // 20,001 ~ 35,000명
-        LOW     // 35,001 ~ 49,999명
+        DANGER,    // 높은 소멸 위험 (인구 감소율 높음)
+        WARNING,   // 잠재적 소멸 위험 (인구 감소율 중간)
+        CAUTION,   // 주의 단계 (인구 감소율 낮음)
+        SAFE       // 안전 (인구 증가 또는 유지)
     }
 
     @Enumerated(EnumType.STRING)
@@ -59,14 +60,19 @@ public class Region extends BaseTimeEntity {
         this.predictedExtinctYear = year;
     }
 
-    // 인구 수에 따른 위험도 계산 메서드
+    // 인구 감소율에 따른 위험도 계산 메서드
     public void calculateRiskLevel() {
-        if (this.currentPopulation <= 20000) {
-            this.riskLevel = RiskLevel.HIGH;
-        } else if (this.currentPopulation <= 35000) {
-            this.riskLevel = RiskLevel.MEDIUM;
+        // 인구 증가 또는 유지인 경우 (avgDeclineRate가 0 이하)
+        if (this.avgDeclineRate <= 0) {
+            this.riskLevel = RiskLevel.SAFE;
+        }
+        // 인구 감소율에 따른 위험도 분류
+        else if (this.avgDeclineRate > 3.0) {
+            this.riskLevel = RiskLevel.DANGER;
+        } else if (this.avgDeclineRate > 1.5) {
+            this.riskLevel = RiskLevel.WARNING;
         } else {
-            this.riskLevel = RiskLevel.LOW;
+            this.riskLevel = RiskLevel.CAUTION;
         }
     }
 }
