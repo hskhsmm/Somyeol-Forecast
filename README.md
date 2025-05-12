@@ -56,7 +56,8 @@ src/
 
 ## ERD
 
-![스크린샷 2025-05-12 173654](https://github.com/user-attachments/assets/b0a01803-f334-4cfd-aed3-336581502d63)
+![스크린샷 2025-05-12 213456](https://github.com/user-attachments/assets/4f560dca-7808-4f71-86c7-02eb2e0513d2)
+
 
 
 <br>
