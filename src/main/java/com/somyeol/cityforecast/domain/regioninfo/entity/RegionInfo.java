@@ -28,6 +28,9 @@ public class RegionInfo extends BaseTimeEntity {
     @Column(nullable = false)
     private String specialty;
 
+    @Column(name = "specialty_image_url")  // 추가된 필드
+    private String specialtyImageUrl;
+
     @Column(nullable = false)
     private String festival;
 
@@ -37,6 +40,6 @@ public class RegionInfo extends BaseTimeEntity {
     @Column(name = "image_url")
     private String imageUrl;
 
-    @Column(name = "website_url")  // 추가된 필드
+    @Column(name = "website_url")
     private String websiteUrl;
 }

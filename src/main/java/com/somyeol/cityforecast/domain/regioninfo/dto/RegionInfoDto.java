@@ -15,20 +15,22 @@ public class RegionInfoDto {
     private Long id;
     private Long regionId;
     private String specialty;
+    private String specialtyImageUrl;  // 추가된 필드
     private String festival;
     private String attraction;
     private String imageUrl;
-    private String websiteUrl;  // 추가된 필드
+    private String websiteUrl;
 
     public static RegionInfoDto fromEntity(RegionInfo regionInfo) {
         return RegionInfoDto.builder()
                 .id(regionInfo.getId())
                 .regionId(regionInfo.getRegion().getId())
                 .specialty(regionInfo.getSpecialty())
+                .specialtyImageUrl(regionInfo.getSpecialtyImageUrl())  // 추가된 필드
                 .festival(regionInfo.getFestival())
                 .attraction(regionInfo.getAttraction())
                 .imageUrl(regionInfo.getImageUrl())
-                .websiteUrl(regionInfo.getWebsiteUrl())  // 추가된 필드
+                .websiteUrl(regionInfo.getWebsiteUrl())
                 .build();
     }
 }

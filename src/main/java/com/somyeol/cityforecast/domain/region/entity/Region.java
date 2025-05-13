@@ -36,7 +36,7 @@ public class Region extends BaseTimeEntity {
     private Integer currentPopulation;
 
     @Column(name = "population_50yr_ago", nullable = false)
-    private Integer population50yrAgo;  // 20yr에서 50yr로 변경
+    private Integer population50yrAgo;
 
     @Column(name = "avg_decline_rate", nullable = false)
     private Float avgDeclineRate;

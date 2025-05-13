@@ -19,7 +19,7 @@ public class RegionResponseDto {
     private Double latitude;
     private Double longitude;
     private Integer currentPopulation;
-    private Integer population20yrAgo;
+    private Integer population50yrAgo;
     private Float avgDeclineRate;
     private Integer predictedExtinctYear;
     private Region.RiskLevel riskLevel;
@@ -33,7 +33,7 @@ public class RegionResponseDto {
                 .latitude(region.getLatitude())
                 .longitude(region.getLongitude())
                 .currentPopulation(region.getCurrentPopulation())
-                .population20yrAgo(region.getPopulation20yrAgo())
+                .population50yrAgo(region.getPopulation50yrAgo())
                 .avgDeclineRate(region.getAvgDeclineRate())
                 .predictedExtinctYear(region.getPredictedExtinctYear())
                 .riskLevel(region.getRiskLevel())
