@@ -89,7 +89,7 @@ public class RegionDataInitializer implements CommandLineRunner {
     }
 
     private void initRegionInfoData() throws Exception {
-        ClassPathResource resource = new ClassPathResource("data/region_info.csv");
+        ClassPathResource resource = new ClassPathResource("data/region_info.tsv"); // 확장자 변경
         BufferedReader reader = new BufferedReader(
                 new InputStreamReader(resource.getInputStream(), StandardCharsets.UTF_8));
 
@@ -98,12 +98,12 @@ public class RegionDataInitializer implements CommandLineRunner {
 
         // 데이터 읽기
         while ((line = reader.readLine()) != null) {
-            String[] data = line.split(",");
-            if (data.length >= 8) {  // 필드 개수 8개로 증가
-                Long id = Long.parseLong(data[0]);
-                Long regionId = Long.parseLong(data[1]);
+            String[] data = line.split("\t"); // 쉼표 대신 탭으로 분리
+            if (data.length >= 8) {
+                Long id = Long.parseLong(data[0].trim());
+                Long regionId = Long.parseLong(data[1].trim());
                 String specialty = data[2];
-                String specialtyImageUrl = data[3];  // 추가된 필드
+                String specialtyImageUrl = data[3];
                 String festival = data[4];
                 String attraction = data[5];
                 String imageUrl = data[6];
@@ -116,7 +116,7 @@ public class RegionDataInitializer implements CommandLineRunner {
                         .id(id)
                         .region(region)
                         .specialty(specialty)
-                        .specialtyImageUrl(specialtyImageUrl)  // 추가된 필드
+                        .specialtyImageUrl(specialtyImageUrl)
                         .festival(festival)
                         .attraction(attraction)
                         .imageUrl(imageUrl)

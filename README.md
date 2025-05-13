@@ -35,20 +35,63 @@
 ````
 src/
 └── main/
-├── java/com/somyeol/cityforecast/
-│ ├── CityForecastApplication.java # Spring Boot 메인 클래스
-│   ├── domain/
-│   │   ├── region/                     # 지역 정보 (Entity, Service, Controller, CSV 초기화)
-│   │   └── regioninfo/                 # 특산물, 축제, 관광지 정보
-│   └── global/
-│       ├── config/                     # 웹 설정 (CORS 등)
-│       ├── exception/                  # 전역 예외 처리
-│       └── base/                       # 공통 BaseTimeEntity
-└── resources/
-    ├── static/js/                      # JS 파일 (지도, 그래프, 즐겨찾기)
-    ├── templates/                      # JSP 뷰 (index, popup, fragments)
-    ├── data/                           # CSV 데이터 파일 (region.csv, region_info.csv)
-    └── application.yml                 # DB 및 서버 설정
+    ├── java/com/somyeol/cityforecast/
+    │   ├── CityForecastApplication.java
+    │   ├── domain/
+    │   │   ├── region/              # 지역 기본 정보 엔티티/서비스/컨트롤러
+    │   │   │   ├── controller/
+    │   │   │   │   └── RegionController.java
+    │   │   │   ├── dto/
+    │   │   │   │   └── RegionResponseDto.java
+    │   │   │   ├── entity/
+    │   │   │   │   └── Region.java
+    │   │   │   ├── repository/
+    │   │   │   │   └── RegionRepository.java
+    │   │   │   └── service/
+    │   │   │       ├── RegionService.java
+    │   │   │       └── RegionDataInitializer.java
+    │   │   └── regioninfo/          # 지역 특산물/축제/관광지 정보
+    │   │       ├── dto/
+    │   │       │   └── RegionInfoDto.java
+    │   │       ├── entity/
+    │   │       │   └── RegionInfo.java
+    │   │       ├── repository/
+    │   │       │   └── RegionInfoRepository.java
+    │   │       └── service/
+    │   │           └── RegionInfoService.java
+    │   └── global/
+    │       ├── config/
+    │       │   └── WebConfig.java
+    │       ├── exception/
+    │       │   └── GlobalExceptionHandler.java
+    │       └── base/
+    │           └── BaseTimeEntity.java
+    ├── resources/
+    │   ├── static/
+    │   │   ├── js/
+    │   │   │   ├── map.js           # Leaflet 기반 지도 렌더링
+    │   │   │   ├── chart.js         # Chart.js 그래프
+    │   │   │   └── bookmark.js      # 즐겨찾기 기능
+    │   │   ├── css/
+    │   │   │   └── style.css
+    │   │   └── vendor/
+    │   │       ├── leaflet/
+    │   │       ├── bootstrap/
+    │   │       └── chartjs/
+    │   ├── data/
+    │   │   ├── population_data.csv  # 지역 기본 정보 CSV
+    │   │   └── region_info.tsv      # 특산물/축제/관광지 CSV
+    │   └── application.yml          # DB 및 서버 설정
+    └── webapp/
+        └── WEB-INF/
+            └── views/
+                ├── index.jsp        # 메인 페이지
+                ├── search.jsp       # 검색 페이지
+                ├── top10.jsp        # TOP10 페이지
+                ├── popup.jsp        # 지역 상세 팝업
+                └── fragments/
+                    ├── header.jsp   # 공통 헤더
+                    └── footer.jsp   # 공통 푸터
 
 ````
 
