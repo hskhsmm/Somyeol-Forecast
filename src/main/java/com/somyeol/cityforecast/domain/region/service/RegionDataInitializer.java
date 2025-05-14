@@ -104,13 +104,17 @@ public class RegionDataInitializer implements CommandLineRunner {
                 Long csvInfoId = Long.parseLong(data[0].trim());  // 사용하지 않음
                 Long csvRegionId = Long.parseLong(data[1].trim());  // CSV에서의 region_id
                 String specialty = data[2];
-                String specialtyImageUrl = data[3];
+
+                // GitHub URL을 접근 가능한 URL로 변환
+                String specialtyImageUrl = convertToAccessibleUrl(data[3], true);
                 String festival = data[4];
                 String attraction = data[5];
-                String imageUrl = data[6];
+
+                // GitHub URL을 접근 가능한 URL로 변환
+                String imageUrl = convertToAccessibleUrl(data[6], false);
                 String websiteUrl = data[7];
 
-                // 이전에 저장한 Region 엔티티를 찾지 말고, regionMap에서 가져옵니다
+                // 이전에 저장한 Region 엔티티를 찾음
                 Region region = regionRepository.findById(csvRegionId)
                         .orElseThrow(() -> new IllegalStateException("Region not found with id: " + csvRegionId));
 
@@ -131,5 +135,19 @@ public class RegionDataInitializer implements CommandLineRunner {
             }
         }
         reader.close();
+    }
+
+    // GitHub URL을 접근 가능한 URL로 변환하는 메서드
+    private String convertToAccessibleUrl(String originalUrl, boolean isSpecialty) {
+        if (originalUrl == null || originalUrl.isEmpty() || originalUrl.contains("github.com/user-attachments")) {
+            // 기본 이미지 제공
+            if (isSpecialty) {
+                return "https://via.placeholder.com/200x150?text=특산물+이미지";
+            } else {
+                return "https://via.placeholder.com/300x200?text=지역+이미지";
+            }
+        }
+
+        return originalUrl;
     }
 }

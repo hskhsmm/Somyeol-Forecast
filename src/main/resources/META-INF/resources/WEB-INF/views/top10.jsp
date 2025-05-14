@@ -12,8 +12,8 @@
 
     <!-- 나머지 코드는 동일 -->
 
-    <!-- 커스텀 CSS -->
-    <link rel="stylesheet" href="/static/css/style.css">
+    <!-- 커스텀 CSS (경로 수정) -->
+    <link rel="stylesheet" href="/css/style.css">
 
     <!-- 폰트어썸 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -217,9 +217,31 @@
 <!-- Chart.js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<!-- 커스텀 자바스크립트 -->
-<script src="/static/js/chart.js"></script>
-<script src="/static/js/bookmark.js"></script>
-<script src="/static/js/top10.js"></script>
+<!-- 이미지 에러 처리를 위한 전역 스크립트 -->
+<script>
+    // 페이지의 모든 이미지에 오류 핸들러 추가
+    document.addEventListener('DOMContentLoaded', function() {
+        // 기본 이미지 설정
+        const defaultRegionImage = 'https://via.placeholder.com/300x200?text=이미지+없음';
+        const defaultSpecialtyImage = 'https://via.placeholder.com/200x150?text=특산물+이미지+없음';
+
+        // 모든 이미지 요소에 에러 핸들러 추가
+        document.querySelectorAll('img').forEach(img => {
+            img.addEventListener('error', function() {
+                // 이미지 유형에 따라 적절한 대체 이미지 설정
+                if (this.id === 'specialty-image' || this.alt.includes('특산물')) {
+                    this.src = defaultSpecialtyImage;
+                } else {
+                    this.src = defaultRegionImage;
+                }
+            });
+        });
+    });
+</script>
+
+<!-- 커스텀 자바스크립트 (경로 수정) -->
+<script src="/js/chart.js"></script>
+<script src="/js/bookmark.js"></script>
+<script src="/js/top10.js"></script>
 </body>
 </html>

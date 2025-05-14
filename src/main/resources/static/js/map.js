@@ -20,6 +20,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 북마크 초기화
     renderBookmarks();
+
+    // 이미지 에러 디버깅 코드 추가
+    document.addEventListener('error', function(e) {
+        if (e.target.tagName.toLowerCase() === 'img') {
+            console.error('이미지 로딩 실패:', e.target.src);
+        }
+    }, true);
 });
 
 // Leaflet 지도 초기화
@@ -158,7 +165,7 @@ function showRegionDetails(region) {
     document.getElementById('region-province').textContent = region.province;
     document.getElementById('current-population').textContent = region.currentPopulation.toLocaleString();
     document.getElementById('past-population').textContent = region.population50yrAgo.toLocaleString();
-    document.getElementById('decline-rate').textContent = (region.avgDeclineRate * 100).toFixed(2);
+    document.getElementById('decline-rate').textContent = Math.abs(region.avgDeclineRate * 100).toFixed(2);
 
     // 위험도에 따른 알림 설정
     const alertElement = document.getElementById('extinction-alert');
@@ -211,16 +218,36 @@ function showRegionDetails(region) {
         // 웹사이트 링크
         document.getElementById('region-website').href = info.websiteUrl;
 
-        // 지역 이미지
-        document.getElementById('region-image').src = info.imageUrl;
+        // 지역 이미지 - 오류 처리 추가
+        const regionImage = document.getElementById('region-image');
+        const placeholderImage = 'https://via.placeholder.com/300x200?text=이미지+없음';
+
+        if (info.imageUrl) {
+            regionImage.src = info.imageUrl;
+            regionImage.onerror = function() {
+                this.src = placeholderImage;
+            };
+        } else {
+            regionImage.src = placeholderImage;
+        }
 
         // 특산물, 축제, 관광지 정보
         document.getElementById('specialty-text').textContent = info.specialty;
         document.getElementById('festival-text').textContent = info.festival;
         document.getElementById('attraction-text').textContent = info.attraction;
 
-        // 특산물 이미지
-        document.getElementById('specialty-image').src = info.specialtyImageUrl;
+        // 특산물 이미지 - 오류 처리 추가
+        const specialtyImage = document.getElementById('specialty-image');
+        const specialtyPlaceholder = 'https://via.placeholder.com/200x150?text=특산물+이미지+없음';
+
+        if (info.specialtyImageUrl) {
+            specialtyImage.src = info.specialtyImageUrl;
+            specialtyImage.onerror = function() {
+                this.src = specialtyPlaceholder;
+            };
+        } else {
+            specialtyImage.src = specialtyPlaceholder;
+        }
     }
 
     // 인구 변화 차트 생성

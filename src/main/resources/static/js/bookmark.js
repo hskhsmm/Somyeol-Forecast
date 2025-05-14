@@ -109,7 +109,7 @@ function renderBookmarks() {
         card.innerHTML = `
             <div class="card bookmark-card h-100">
                 <div class="card-img-container">
-                    <img src="${imageUrl}" class="card-img-top" alt="${bookmark.name}">
+                    <img src="${imageUrl}" class="card-img-top" alt="${bookmark.name}" onerror="this.src='https://via.placeholder.com/300x200?text=이미지+없음'">
                     <span class="badge status-badge ${badgeClass} risk-badge">${riskText}</span>
                 </div>
                 <div class="card-body">
@@ -117,6 +117,7 @@ function renderBookmarks() {
                     <p class="card-text text-muted">${bookmark.province}</p>
                     <p class="card-text">인구: ${bookmark.currentPopulation.toLocaleString()}명</p>
                     <p class="card-text">소멸 예상: ${bookmark.predictedExtinctYear}년</p>
+                    <p class="card-text">감소율: ${Math.abs(bookmark.avgDeclineRate * 100).toFixed(2)}%</p>
                 </div>
                 <div class="card-footer d-flex justify-content-between align-items-center">
                     <button class="btn btn-sm btn-primary view-details-btn" data-region-id="${bookmark.id}">

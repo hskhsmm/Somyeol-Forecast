@@ -223,3 +223,36 @@ body {
     position: relative;
     height: 350px;
 }
+
+/* 추가된 차트 고정 높이 설정 */
+#population-chart {
+    height: 300px !important;
+    max-height: 300px !important;
+}
+
+/* 모달 내 차트 컨테이너 설정 */
+.modal .row .col-12 {
+    min-height: 350px;
+    max-height: 400px;
+    margin-bottom: 20px;
+}
+
+/* 이미지 오류 처리용 스타일 */
+.img-error-fallback {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f9fa;
+    color: #6c757d;
+    font-size: 14px;
+    text-align: center;
+    padding: 10px;
+}
+
+.specialty-img.img-error {
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #6c757d;
+}

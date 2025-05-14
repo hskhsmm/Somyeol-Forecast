@@ -113,7 +113,8 @@ function createPopulationChart(region) {
         },
         options: {
             responsive: true,
-            maintainAspectRatio: false,
+            maintainAspectRatio: true, // 이 옵션을 true로 설정하여 비율 유지
+            height: 300, // 높이 고정
             plugins: {
                 title: {
                     display: false
@@ -183,7 +184,8 @@ function createTop10Chart(regions) {
 
     // 데이터 준비
     const labels = regions.map(region => region.name);
-    const declineRates = regions.map(region => (region.avgDeclineRate * 100).toFixed(2));
+    // 감소율 표시시 절대값으로 변환
+    const declineRates = regions.map(region => Math.abs(region.avgDeclineRate * 100).toFixed(2));
     const predictedYears = regions.map(region => region.predictedExtinctYear);
 
     // 위험도별 색상 설정

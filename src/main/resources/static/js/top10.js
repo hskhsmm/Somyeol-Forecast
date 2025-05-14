@@ -3,6 +3,77 @@
  * 인구 감소율 TOP 10 지역 데이터 표시
  */
 
+// localStorage에서 북마크 가져오기 함수
+function getBookmarks() {
+    const bookmarks = localStorage.getItem('cityforecast-bookmarks');
+    return bookmarks ? JSON.parse(bookmarks) : [];
+}
+
+// 북마크 여부 확인 함수
+function isBookmarked(regionId) {
+    const bookmarks = getBookmarks();
+    return bookmarks.some(bookmark => bookmark.id === regionId);
+}
+
+// 북마크 추가 함수
+function addBookmark(region) {
+    const bookmarks = getBookmarks();
+
+    // 이미 존재하는지 확인
+    if (!bookmarks.some(bookmark => bookmark.id === region.id)) {
+        // 필요한 정보만 저장
+        const bookmarkData = {
+            id: region.id,
+            name: region.name,
+            province: region.province,
+            currentPopulation: region.currentPopulation,
+            population50yrAgo: region.population50yrAgo,
+            avgDeclineRate: region.avgDeclineRate,
+            predictedExtinctYear: region.predictedExtinctYear,
+            riskLevel: region.riskLevel,
+            latitude: region.latitude,
+            longitude: region.longitude
+        };
+
+        // 지역 정보가 있으면 이미지 URL 저장
+        if (region.regionInfo) {
+            bookmarkData.imageUrl = region.regionInfo.imageUrl;
+            bookmarkData.specialtyImageUrl = region.regionInfo.specialtyImageUrl;
+            bookmarkData.specialty = region.regionInfo.specialty;
+            bookmarkData.festival = region.regionInfo.festival;
+            bookmarkData.attraction = region.regionInfo.attraction;
+            bookmarkData.websiteUrl = region.regionInfo.websiteUrl;
+        }
+
+        bookmarks.push(bookmarkData);
+        localStorage.setItem('cityforecast-bookmarks', JSON.stringify(bookmarks));
+    }
+}
+
+// 북마크 제거 함수
+function removeBookmark(regionId) {
+    let bookmarks = getBookmarks();
+    bookmarks = bookmarks.filter(bookmark => bookmark.id !== regionId);
+    localStorage.setItem('cityforecast-bookmarks', JSON.stringify(bookmarks));
+}
+
+// 북마크 토글 함수
+function toggleBookmark(region) {
+    if (isBookmarked(region.id)) {
+        removeBookmark(region.id);
+        const bookmarkBtn = document.getElementById('bookmark-btn');
+        bookmarkBtn.innerHTML = '<i class="far fa-star"></i> 관심 지역에 추가';
+        bookmarkBtn.classList.remove('btn-warning');
+        bookmarkBtn.classList.add('btn-outline-warning');
+    } else {
+        addBookmark(region);
+        const bookmarkBtn = document.getElementById('bookmark-btn');
+        bookmarkBtn.innerHTML = '<i class="fas fa-star"></i> 관심 지역에서 제거';
+        bookmarkBtn.classList.remove('btn-outline-warning');
+        bookmarkBtn.classList.add('btn-warning');
+    }
+}
+
 // 페이지 로드 시 실행
 document.addEventListener('DOMContentLoaded', function() {
     loadTop10Data();
@@ -75,7 +146,7 @@ function renderTop10Table(regions) {
             <td>${region.province}</td>
             <td>${region.currentPopulation.toLocaleString()}</td>
             <td>${region.population50yrAgo.toLocaleString()}</td>
-            <td>${(region.avgDeclineRate * 100).toFixed(2)}</td>
+            <td>${Math.abs(region.avgDeclineRate * 100).toFixed(2)}</td>
             <td>${region.predictedExtinctYear}</td>
             <td><span class="status-badge ${badgeClass}">${riskText}</span></td>
             <td>
@@ -96,15 +167,33 @@ function renderTop10Table(regions) {
     });
 }
 
-// 지역 상세 정보 표시 (bookmark.js에 동일한 함수가 있음)
-// TOP 10 페이지에서는 이 함수만 사용하므로 중복해서 정의
+// 지역 상세 정보 가져오기 (북마크에서 상세 정보 버튼 클릭 시)
+function fetchRegionDetails(regionId) {
+    fetch(`/api/regions/${regionId}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('지역 정보를 불러오는데 실패했습니다');
+            }
+            return response.json();
+        })
+        .then(region => {
+            selectedRegion = region;
+            showRegionDetails(region);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('지역 정보를 불러오는데 실패했습니다: ' + error.message);
+        });
+}
+
+// 지역 상세 정보 표시
 function showRegionDetails(region) {
     // 지역 기본 정보 설정
     document.getElementById('region-name').textContent = region.name;
     document.getElementById('region-province').textContent = region.province;
     document.getElementById('current-population').textContent = region.currentPopulation.toLocaleString();
     document.getElementById('past-population').textContent = region.population50yrAgo.toLocaleString();
-    document.getElementById('decline-rate').textContent = (region.avgDeclineRate * 100).toFixed(2);
+    document.getElementById('decline-rate').textContent = Math.abs(region.avgDeclineRate * 100).toFixed(2);
 
     // 위험도에 따른 알림 설정
     const alertElement = document.getElementById('extinction-alert');
@@ -157,16 +246,38 @@ function showRegionDetails(region) {
         // 웹사이트 링크
         document.getElementById('region-website').href = info.websiteUrl;
 
-        // 지역 이미지
-        document.getElementById('region-image').src = info.imageUrl;
+        // 지역 이미지 - 오류 처리 추가
+        const regionImage = document.getElementById('region-image');
+        // placeholder 이미지 URL
+        const placeholderImage = 'https://via.placeholder.com/300x200?text=이미지+없음';
+
+        if (info.imageUrl) {
+            regionImage.src = info.imageUrl;
+            regionImage.onerror = function() {
+                this.src = placeholderImage;
+            };
+        } else {
+            regionImage.src = placeholderImage;
+        }
 
         // 특산물, 축제, 관광지 정보
         document.getElementById('specialty-text').textContent = info.specialty;
         document.getElementById('festival-text').textContent = info.festival;
         document.getElementById('attraction-text').textContent = info.attraction;
 
-        // 특산물 이미지
-        document.getElementById('specialty-image').src = info.specialtyImageUrl;
+        // 특산물 이미지 - 오류 처리 추가
+        const specialtyImage = document.getElementById('specialty-image');
+        // 특산물 placeholder 이미지
+        const specialtyPlaceholder = 'https://via.placeholder.com/200x150?text=특산물+이미지+없음';
+
+        if (info.specialtyImageUrl) {
+            specialtyImage.src = info.specialtyImageUrl;
+            specialtyImage.onerror = function() {
+                this.src = specialtyPlaceholder;
+            };
+        } else {
+            specialtyImage.src = specialtyPlaceholder;
+        }
     }
 
     // 인구 변화 차트 생성
