@@ -1,4 +1,3 @@
-﻿// src/main/java/com/somyeol/cityforecast/global/exception/ErrorResponse.java
 package com.somyeol.cityforecast.global.exception;
 
 import lombok.AllArgsConstructor;

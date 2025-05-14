@@ -1,4 +1,3 @@
-// src/main/java/com/somyeol/cityforecast/domain/regioninfo/dto/RegionInfoDto.java
 package com.somyeol.cityforecast.domain.regioninfo.dto;
 
 import com.somyeol.cityforecast.domain.regioninfo.entity.RegionInfo;

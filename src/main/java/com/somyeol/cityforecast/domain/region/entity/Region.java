@@ -1,4 +1,3 @@
-// src/main/java/com/somyeol/cityforecast/domain/region/entity/Region.java
 package com.somyeol.cityforecast.domain.region.entity;
 
 import com.somyeol.cityforecast.global.base.BaseTimeEntity;

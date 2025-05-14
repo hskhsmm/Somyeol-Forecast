@@ -1,4 +1,3 @@
-﻿// src/main/java/com/somyeol/cityforecast/global/exception/GlobalExceptionHandler.java
 package com.somyeol.cityforecast.global.exception;
 
 import jakarta.servlet.http.HttpServletRequest;

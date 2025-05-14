@@ -1,4 +1,3 @@
-﻿// src/main/java/com/somyeol/cityforecast/global/exception/ResourceNotFoundException.java
 package com.somyeol.cityforecast.global.exception;
 
 public class ResourceNotFoundException extends RuntimeException {

@@ -1,4 +1,3 @@
-﻿// src/main/java/com/somyeol/cityforecast/global/config/WebConfig.java
 package com.somyeol.cityforecast.global.config;
 
 import org.springframework.context.annotation.Configuration;

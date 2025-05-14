@@ -1,4 +1,3 @@
-// src/main/java/com/somyeol/cityforecast/domain/region/service/RegionDataInitializer.java
 package com.somyeol.cityforecast.domain.region.service;
 
 import com.somyeol.cityforecast.domain.region.entity.Region;
@@ -54,24 +53,25 @@ public class RegionDataInitializer implements CommandLineRunner {
         while ((line = reader.readLine()) != null) {
             String[] data = line.split(",");
             if (data.length >= 9) {
-                Long id = Long.parseLong(data[0]);
+                Long csvId = Long.parseLong(data[0]);  // CSV의 ID를 저장합니다만 엔티티에는 사용하지 않습니다
                 String name = data[1];
                 String province = data[2];
                 Double latitude = Double.parseDouble(data[3]);
                 Double longitude = Double.parseDouble(data[4]);
                 Integer currentPopulation = Integer.parseInt(data[5]);
-                Integer population50yrAgo = Integer.parseInt(data[6]);  // 50년 전 인구 데이터
+                Integer population50yrAgo = Integer.parseInt(data[6]);
                 Float avgDeclineRate = Float.parseFloat(data[7]);
                 Integer predictedExtinctYear = Integer.parseInt(data[8]);
 
+                // ID를 직접 설정하지 않고 자동 생성되도록 합니다
                 Region region = Region.builder()
-                        .id(id)
+                        //.id(csvId)  // 이 줄을 제거합니다
                         .name(name)
                         .province(province)
                         .latitude(latitude)
                         .longitude(longitude)
                         .currentPopulation(currentPopulation)
-                        .population50yrAgo(population50yrAgo)  // 50년 전 인구 데이터 사용
+                        .population50yrAgo(population50yrAgo)
                         .avgDeclineRate(avgDeclineRate)
                         .predictedExtinctYear(predictedExtinctYear)
                         .build();
@@ -79,8 +79,9 @@ public class RegionDataInitializer implements CommandLineRunner {
                 // RiskLevel 계산
                 region.calculateRiskLevel();
 
-                regionRepository.save(region);
-                regionMap.put(id, region);
+                // 저장 후 생성된 ID로 매핑
+                Region savedRegion = regionRepository.save(region);
+                regionMap.put(csvId, savedRegion);  // CSV ID를 키로, 저장된 엔티티를 값으로 맵에 저장
 
                 log.info("Saved Region: {}", region.getName());
             }
@@ -89,7 +90,7 @@ public class RegionDataInitializer implements CommandLineRunner {
     }
 
     private void initRegionInfoData() throws Exception {
-        ClassPathResource resource = new ClassPathResource("data/region_info.tsv"); // 확장자 변경
+        ClassPathResource resource = new ClassPathResource("data/region_info.tsv");
         BufferedReader reader = new BufferedReader(
                 new InputStreamReader(resource.getInputStream(), StandardCharsets.UTF_8));
 
@@ -98,10 +99,10 @@ public class RegionDataInitializer implements CommandLineRunner {
 
         // 데이터 읽기
         while ((line = reader.readLine()) != null) {
-            String[] data = line.split("\t"); // 쉼표 대신 탭으로 분리
+            String[] data = line.split("\t");
             if (data.length >= 8) {
-                Long id = Long.parseLong(data[0].trim());
-                Long regionId = Long.parseLong(data[1].trim());
+                Long csvInfoId = Long.parseLong(data[0].trim());  // 사용하지 않음
+                Long csvRegionId = Long.parseLong(data[1].trim());  // CSV에서의 region_id
                 String specialty = data[2];
                 String specialtyImageUrl = data[3];
                 String festival = data[4];
@@ -109,11 +110,12 @@ public class RegionDataInitializer implements CommandLineRunner {
                 String imageUrl = data[6];
                 String websiteUrl = data[7];
 
-                Region region = regionRepository.findById(regionId)
-                        .orElseThrow(() -> new IllegalStateException("Region not found with id: " + regionId));
+                // 이전에 저장한 Region 엔티티를 찾지 말고, regionMap에서 가져옵니다
+                Region region = regionRepository.findById(csvRegionId)
+                        .orElseThrow(() -> new IllegalStateException("Region not found with id: " + csvRegionId));
 
                 RegionInfo regionInfo = RegionInfo.builder()
-                        .id(id)
+                        //.id(csvInfoId)  // 이 줄을 제거합니다
                         .region(region)
                         .specialty(specialty)
                         .specialtyImageUrl(specialtyImageUrl)
