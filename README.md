@@ -1,115 +1,90 @@
 # 🏙️ 소멸예보제 (City Disappearance Forecast System)
-
 대한민국 **지방 인구 감소** 데이터를 기반으로, **도시 소멸 위험도**를 시각화해 제공하는 웹 애플리케이션입니다.  
 50년치 인구 데이터를 분석해 소멸 예상 연도를 예측하고, 지역별 특산물, 축제, 관광지 정보도 함께 제공합니다.
 
 ---
 
-## 주요 기능
+## 📊 프로젝트 소개
 
-| 기능명             | 설명                                   |
-|------------------|--------------------------------------|
-| 🗺 지도 기반 시각화     | 인구 5만 미만 지역만 노란 음영으로 표시 (Leaflet.js) |
-| 👆 지역 상세 보기      | 지역 클릭 시 팝업으로 상세 정보 및 예측 결과 표시        |
-| 📉 인구 그래프 출력    | 50년간 인구 데이터를 선 그래프로 출력 (Chart.js)    |
-| ⛔ 소멸 시점 예측      | 연도별 인구 감소율을 기반으로 소멸 위험 연도 계산         |
-| 🧳 지역 정보 카드     | 특산물, 축제, 관광지 정보를 카드형 UI로 제공          |
-| ⭐ 즐겨찾기 기능       | localStorage를 이용해 관심 지역 저장 가능 (비로그인) |
+한국은 급속한 고령화와 저출산으로 인해 지방 인구 감소 문제가 심각해지고 있습니다. 소멸예보제는 이러한 인구 데이터를 분석하여 각 지역의 소멸 위험도를 시각화하고, 소멸 예상 시점을 예측합니다. 또한 지역 활성화를 위한 특산물, 축제, 관광지 정보를 함께 제공하여 지방 소멸 문제에 대한 인식을 높이고자 합니다.
 
----
+### 주요 기능
 
-## 기술 스택
+- **인구 감소율 기반 소멸 예측**: 50년간의 인구 데이터를 바탕으로 각 지역의 소멸 예상 연도 계산
+- **위험도 시각화**: 4단계(위험, 경고, 주의, 안전)로 소멸 위험도 표시
+- **인터랙티브 지도**: 한국 전역의 소멸 위험 지역을 한눈에 확인
+- **TOP 10 분석**: 인구 감소율이 가장 높은 10개 지역 분석 및 그래프 제공
+- **지역 상세 정보**: 각 지역의 특산물, 축제, 관광지 정보 제공
+- **관심 지역 관리**: 원하는 지역을 북마크하여 쉽게 접근
 
-| 구분 | 기술 |
-|------|------|
-| **Frontend** | JSP, JavaScript, Bootstrap 5, Leaflet.js, Chart.js |
-| **Backend** | Spring Boot 3.x, Spring Data JPA, Lombok |
-| **Database** | MySQL (AWS RDS) |
-| **배포 환경** | Docker, AWS EC2 |
-| **기타 도구** | IntelliJ, GitHub, draw.io, dbdiagram.io |
+## 🖼️ 스크린샷
 
----
+### 메인 지도 화면
+[여기에 메인 지도 화면 이미지]
 
-## 프로젝트 구조 (Backend)
+### 지역 상세 정보
+[여기에 지역 상세 정보 모달 이미지]
 
-````
-src/
-└── main/
-    ├── java/com/somyeol/cityforecast/
-    │   ├── CityForecastApplication.java
-    │   ├── domain/
-    │   │   ├── region/              # 지역 기본 정보 엔티티/서비스/컨트롤러
-    │   │   │   ├── controller/
-    │   │   │   │   └── RegionController.java
-    │   │   │   ├── dto/
-    │   │   │   │   └── RegionResponseDto.java
-    │   │   │   ├── entity/
-    │   │   │   │   └── Region.java
-    │   │   │   ├── repository/
-    │   │   │   │   └── RegionRepository.java
-    │   │   │   └── service/
-    │   │   │       ├── RegionService.java
-    │   │   │       └── RegionDataInitializer.java
-    │   │   └── regioninfo/          # 지역 특산물/축제/관광지 정보
-    │   │       ├── dto/
-    │   │       │   └── RegionInfoDto.java
-    │   │       ├── entity/
-    │   │       │   └── RegionInfo.java
-    │   │       ├── repository/
-    │   │       │   └── RegionInfoRepository.java
-    │   │       └── service/
-    │   │           └── RegionInfoService.java
-    │   ├── global/
-    │   │   ├── config/
-    │   │   │   └── WebConfig.java    # 웹 설정
-    │   │   ├── exception/
-    │   │   │   ├── GlobalExceptionHandler.java
-    │   │   │   ├── ErrorResponse.java
-    │   │   │   └── ResourceNotFoundException.java
-    │   │   └── base/
-    │   │       └── BaseTimeEntity.java
-    │   └── web/
-    │       └── HomeController.java   # JSP 뷰 컨트롤러
-    ├── resources/
-    │   ├── META-INF/
-    │   │   └── resources/
-    │   │       └── WEB-INF/
-    │   │           └── views/        # JSP 파일 위치 (Spring Boot JAR 패키징에 필요)
-    │   │               ├── index.jsp # 메인 페이지
-    │   │               ├── top10.jsp # TOP10 페이지
-    │   │               └── fragments/
-    │   │                   ├── header.jsp
-    │   │                   └── footer.jsp
-    │   ├── static/
-    │   │   ├── js/
-    │   │   │   ├── map.js          # Leaflet 기반 지도 렌더링
-    │   │   │   ├── chart.js        # Chart.js 그래프
-    │   │   │   ├── bookmark.js     # 즐겨찾기 기능
-    │   │   │   └── top10.js        # TOP10 페이지 JavaScript
-    │   │   └── css/
-    │   │       └── style.css
-    │   ├── data/
-    │   │   ├── population_data.csv # 지역 기본 정보 CSV
-    │   │   └── region_info.tsv     # 특산물/축제/관광지 TSV
-    │   └── application.yml         # DB 및 서버 설정
-    └── webapp/                     # 참고용 (실제 JSP 파일은 META-INF/resources/에 있음)              
+### TOP 10 분석 화면
+[여기에 TOP 10 페이지 이미지]
 
-````
+### 북마크 기능
+[여기에 북마크]
 
-## ERD
+## 🌟 주요 특징
 
-![스크린샷 2025-05-13 122857](https://github.com/user-attachments/assets/d54d29ca-37cb-4886-b121-150eea127c84)
+### 1. 소멸 위험도 분류 시스템
+
+소멸 예상 연도에 따라 네 가지 위험도로 분류합니다:
+
+- **🔴 위험 (Danger)**: 2100년 이전 소멸 예상
+- **🟡 경고 (Warning)**: 2100-2199년 소멸 예상
+- **🔵 주의 (Caution)**: 2200-2299년 소멸 예상
+- **🟢 안전 (Safe)**: 2300년 이후 소멸 예상
+
+### 2. 예측 알고리즘
+
+- 50년간의 인구 감소 추세를 분석하여 평균 감소율 계산
+- 현재 인구와 감소율을 기반으로 소멸 예상 시점 도출
+- 인구 변화 추이를 차트로 시각화하여 직관적인 이해 지원
+
+### 3. 지역 활성화 정보
+
+각 지역의 고유한 매력을 알리기 위한 정보 제공:
+- 지역 특산물 정보
+- 대표 축제 정보
+- 주요 관광지 정보
+
+## 💻 기술 스택
+
+- **백엔드**: Spring Boot, JPA/Hibernate, MySQL
+- **프론트엔드**: HTML5, CSS3, JavaScript, Bootstrap 5
+- **지도 시각화**: Leaflet.js, VWorld API
+- **차트 & 그래프**: Chart.js
+- **데이터 분석**: Java 데이터 처리
+
+## 📱 반응형 디자인
+
+PC부터 모바일까지 다양한 디바이스에서 최적화된 경험을 제공합니다:
+- 데스크톱: 고해상도 지도와 상세 정보 패널
+- 태블릿: 조정된 레이아웃으로 쉬운 탐색
+- 모바일: 터치 친화적 인터페이스와 접근성 향상
+
+## 🌱 미래 계획
+
+- 인구 통계 데이터 실시간 업데이트
+- 인구 소멸 대응 방안 정보 제공
+- 지역별 귀농/귀촌 정보 연계
+- 사용자 참여형 지역 정보 업데이트
+
+## 📝 데이터 출처
+
+- 인구 데이터: 국가통계포털 (KOSIS)
+- 지도 API: VWorld
+- 지역 정보: 각 지자체 공식 웹사이트
 
 
 
+## 🔍 프로젝트 목적
 
-<br>
-<br>
-
-
-## Architecture
-
-![somyeol_architecture](https://github.com/user-attachments/assets/277cadd0-0f57-4f7e-a5c5-1b8455f1c705)
-
-
-
+소멸예보제를 통해 많은 지역이 처한 현실을 직시하고 함께 해결책을 모색하는 계기가 되기를 바랍니다.
