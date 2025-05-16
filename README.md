@@ -92,31 +92,7 @@ src/
     │   │   ├── population_data.csv # 지역 기본 정보 CSV
     │   │   └── region_info.tsv     # 특산물/축제/관광지 TSV
     │   └── application.yml         # DB 및 서버 설정
-    └── webapp/                     # 참고용 (실제 JSP 파일은 META-INF/resources/에 있음)
-
-간소화                    
-src/main/java/com/somyeol/cityforecast/
-├── domain/
-│   ├── region/
-│   │   ├── controller/RegionController.java
-│   │   ├── dto/RegionResponseDto.java
-│   │   ├── entity/Region.java
-│   │   ├── repository/RegionRepository.java
-│   │   └── service/
-│   │       ├── RegionService.java
-│   │       └── RegionDataInitializer.java
-│   └── regioninfo/
-│       ├── dto/RegionInfoDto.java
-│       ├── entity/RegionInfo.java
-│       ├── repository/RegionInfoRepository.java
-│       └── service/RegionInfoService.java
-└── global/
-    ├── base/BaseTimeEntity.java
-    ├── config/WebConfig.java
-    └── exception/
-        ├── ErrorResponse.java
-        ├── GlobalExceptionHandler.java
-        └── ResourceNotFoundException.java                    
+    └── webapp/                     # 참고용 (실제 JSP 파일은 META-INF/resources/에 있음)              
 
 ````
 
