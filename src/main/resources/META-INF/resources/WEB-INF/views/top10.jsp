@@ -10,8 +10,6 @@
     <!-- 부트스트랩 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- 나머지 코드는 동일 -->
-
     <!-- 커스텀 CSS (경로 수정) -->
     <link rel="stylesheet" href="/css/style.css">
 
@@ -169,29 +167,33 @@
 
                 <div class="row mt-4">
                     <div class="col-md-4">
-                        <div class="card h-100">
+                        <div class="card h-100 specialty-card">
                             <div class="card-header">특산물</div>
                             <div class="card-body">
                                 <div class="text-center mb-2">
                                     <img id="specialty-image" src="" alt="특산물 이미지" class="img-fluid rounded specialty-img">
                                 </div>
-                                <p id="specialty-text" class="text-center"></p>
+                                <p id="specialty-text" class="text-center fw-bold"></p>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="card h-100">
+                        <div class="card h-100 festival-card">
                             <div class="card-header">축제</div>
                             <div class="card-body">
-                                <p id="festival-text" class="text-center"></p>
+                                <p id="festival-text" class="text-center">
+                                    <!-- 여기에 JavaScript로 내용이 동적으로 추가됩니다 -->
+                                </p>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="card h-100">
+                        <div class="card h-100 attraction-card">
                             <div class="card-header">관광지</div>
                             <div class="card-body">
-                                <p id="attraction-text" class="text-center"></p>
+                                <p id="attraction-text" class="text-center">
+                                    <!-- 여기에 JavaScript로 내용이 동적으로 추가됩니다 -->
+                                </p>
                             </div>
                         </div>
                     </div>

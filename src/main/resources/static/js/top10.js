@@ -260,14 +260,12 @@ function showRegionDetails(region) {
             regionImage.src = placeholderImage;
         }
 
-        // 특산물, 축제, 관광지 정보
+        // 특산물, 축제, 관광지 정보 (아이콘 추가 및 스타일 적용)
+        // 특산물 정보
         document.getElementById('specialty-text').textContent = info.specialty;
-        document.getElementById('festival-text').textContent = info.festival;
-        document.getElementById('attraction-text').textContent = info.attraction;
 
         // 특산물 이미지 - 오류 처리 추가
         const specialtyImage = document.getElementById('specialty-image');
-        // 특산물 placeholder 이미지
         const specialtyPlaceholder = 'https://via.placeholder.com/200x150?text=특산물+이미지+없음';
 
         if (info.specialtyImageUrl) {
@@ -278,6 +276,30 @@ function showRegionDetails(region) {
         } else {
             specialtyImage.src = specialtyPlaceholder;
         }
+
+        // 축제 정보 - 아이콘 추가 및 스타일링
+        const festivalText = document.getElementById('festival-text');
+        festivalText.innerHTML = `
+            <div class="text-center mb-3">
+                <i class="fas fa-calendar-alt fa-3x text-primary"></i>
+            </div>
+            <div class="festival-name fw-bold mb-2">${info.festival}</div>
+            <div class="festival-desc small text-muted">
+                ${region.name}의 대표 축제로, 지역 문화와 특색을 경험할 수 있습니다.
+            </div>
+        `;
+
+        // 관광지 정보 - 아이콘 추가 및 스타일링
+        const attractionText = document.getElementById('attraction-text');
+        attractionText.innerHTML = `
+            <div class="text-center mb-3">
+                <i class="fas fa-mountain fa-3x text-success"></i>
+            </div>
+            <div class="attraction-name fw-bold mb-2">${info.attraction}</div>
+            <div class="attraction-desc small text-muted">
+                ${region.name}의 주요 관광 명소로, 방문객들에게 인기가 있습니다.
+            </div>
+        `;
     }
 
     // 인구 변화 차트 생성

@@ -27,7 +27,7 @@
         <hr class="my-3 bg-secondary">
         <div class="row">
             <div class="col text-center">
-                <p class="mb-0 text-muted">© 2023 소멸예보제. All rights reserved.</p>
+                <p class="mb-0 text-muted">© 2025 소멸예보제. All rights reserved.</p>
                 <p class="text-muted small">
                     데이터 제공: 국가통계포털 | 지도 API: VWorld | 카테고리별 소멸위험지수 산출 기준: 한국고용정보원
                 </p>

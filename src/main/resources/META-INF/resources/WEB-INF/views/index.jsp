@@ -10,8 +10,6 @@
     <!-- 부트스트랩 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- 나머지 코드는 동일 -->
-
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
@@ -153,29 +151,33 @@
 
                 <div class="row mt-4">
                     <div class="col-md-4">
-                        <div class="card h-100">
+                        <div class="card h-100 specialty-card">
                             <div class="card-header">특산물</div>
                             <div class="card-body">
                                 <div class="text-center mb-2">
                                     <img id="specialty-image" src="" alt="특산물 이미지" class="img-fluid rounded specialty-img">
                                 </div>
-                                <p id="specialty-text" class="text-center"></p>
+                                <p id="specialty-text" class="text-center fw-bold"></p>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="card h-100">
+                        <div class="card h-100 festival-card">
                             <div class="card-header">축제</div>
                             <div class="card-body">
-                                <p id="festival-text" class="text-center"></p>
+                                <p id="festival-text" class="text-center">
+                                    <!-- 여기에 JavaScript로 내용이 동적으로 추가됩니다 -->
+                                </p>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="card h-100">
+                        <div class="card h-100 attraction-card">
                             <div class="card-header">관광지</div>
                             <div class="card-body">
-                                <p id="attraction-text" class="text-center"></p>
+                                <p id="attraction-text" class="text-center">
+                                    <!-- 여기에 JavaScript로 내용이 동적으로 추가됩니다 -->
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -206,6 +208,28 @@
 
 <!-- Chart.js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- 이미지 에러 처리를 위한 전역 스크립트 -->
+<script>
+    // 페이지의 모든 이미지에 오류 핸들러 추가
+    document.addEventListener('DOMContentLoaded', function() {
+        // 기본 이미지 설정
+        const defaultRegionImage = 'https://via.placeholder.com/300x200?text=이미지+없음';
+        const defaultSpecialtyImage = 'https://via.placeholder.com/200x150?text=특산물+이미지+없음';
+
+        // 모든 이미지 요소에 에러 핸들러 추가
+        document.querySelectorAll('img').forEach(img => {
+            img.addEventListener('error', function() {
+                // 이미지 유형에 따라 적절한 대체 이미지 설정
+                if (this.id === 'specialty-image' || this.alt.includes('특산물')) {
+                    this.src = defaultSpecialtyImage;
+                } else {
+                    this.src = defaultRegionImage;
+                }
+            });
+        });
+    });
+</script>
 
 <!-- 커스텀 자바스크립트 -->
 <script src="/js/map.js"></script>

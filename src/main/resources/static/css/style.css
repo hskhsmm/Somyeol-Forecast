@@ -256,3 +256,65 @@ body {
     align-items: center;
     color: #6c757d;
 }
+
+/* 축제 및 관광지 카드 스타일 */
+.card-header {
+    font-weight: 600;
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #e9ecef;
+}
+
+.festival-name, .attraction-name {
+    font-size: 1.1rem;
+    color: #343a40;
+}
+
+.festival-desc, .attraction-desc {
+    color: #6c757d;
+}
+
+.fa-calendar-alt {
+    color: #ffc107 !important;
+}
+
+.fa-mountain {
+    color: #28a745 !important;
+}
+
+/* 카드 애니메이션 효과 */
+.card {
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* 특산물, 축제, 관광지 카드 개별 스타일 */
+.specialty-card {
+    border-left: 4px solid #fd7e14;
+}
+
+.festival-card {
+    border-left: 4px solid #ffc107;
+}
+
+.attraction-card {
+    border-left: 4px solid #28a745;
+}
+
+/* 모바일 최적화 */
+@media (max-width: 767px) {
+    .fa-3x {
+        font-size: 2em !important;
+    }
+
+    .festival-name, .attraction-name {
+        font-size: 1rem;
+    }
+
+    .card-body {
+        padding: 1rem;
+    }
+}
