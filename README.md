@@ -22,6 +22,8 @@
 ### 메인 지도 화면
 ![image](https://github.com/user-attachments/assets/7aa2d989-88d3-4d01-b732-09deddaa3cd1)
 <br>
+![image](https://github.com/user-attachments/assets/2f071d17-2a0a-44da-8173-1cf602c3235e)
+
 
 
 
