@@ -59,39 +59,40 @@ src/
     │   │       │   └── RegionInfoRepository.java
     │   │       └── service/
     │   │           └── RegionInfoService.java
-    │   └── global/
-    │       ├── config/
-    │       │   └── WebConfig.java
-    │       ├── exception/
-    │       │   └── GlobalExceptionHandler.java
-    │       └── base/
-    │           └── BaseTimeEntity.java
+    │   ├── global/
+    │   │   ├── config/
+    │   │   │   └── WebConfig.java    # 웹 설정
+    │   │   ├── exception/
+    │   │   │   ├── GlobalExceptionHandler.java
+    │   │   │   ├── ErrorResponse.java
+    │   │   │   └── ResourceNotFoundException.java
+    │   │   └── base/
+    │   │       └── BaseTimeEntity.java
+    │   └── web/
+    │       └── HomeController.java   # JSP 뷰 컨트롤러
     ├── resources/
+    │   ├── META-INF/
+    │   │   └── resources/
+    │   │       └── WEB-INF/
+    │   │           └── views/        # JSP 파일 위치 (Spring Boot JAR 패키징에 필요)
+    │   │               ├── index.jsp # 메인 페이지
+    │   │               ├── top10.jsp # TOP10 페이지
+    │   │               └── fragments/
+    │   │                   ├── header.jsp
+    │   │                   └── footer.jsp
     │   ├── static/
     │   │   ├── js/
-    │   │   │   ├── map.js           # Leaflet 기반 지도 렌더링
-    │   │   │   ├── chart.js         # Chart.js 그래프
-    │   │   │   └── bookmark.js      # 즐겨찾기 기능
-    │   │   ├── css/
-    │   │   │   └── style.css
-    │   │   └── vendor/
-    │   │       ├── leaflet/
-    │   │       ├── bootstrap/
-    │   │       └── chartjs/
+    │   │   │   ├── map.js          # Leaflet 기반 지도 렌더링
+    │   │   │   ├── chart.js        # Chart.js 그래프
+    │   │   │   ├── bookmark.js     # 즐겨찾기 기능
+    │   │   │   └── top10.js        # TOP10 페이지 JavaScript
+    │   │   └── css/
+    │   │       └── style.css
     │   ├── data/
-    │   │   ├── population_data.csv  # 지역 기본 정보 CSV
-    │   │   └── region_info.tsv      # 특산물/축제/관광지 CSV
-    │   └── application.yml          # DB 및 서버 설정
-    └── webapp/
-        └── WEB-INF/
-            └── views/
-                ├── index.jsp        # 메인 페이지
-                ├── search.jsp       # 검색 페이지
-                ├── top10.jsp        # TOP10 페이지
-                ├── popup.jsp        # 지역 상세 팝업
-                └── fragments/
-                    ├── header.jsp   # 공통 헤더
-                    └── footer.jsp   # 공통 푸터
+    │   │   ├── population_data.csv # 지역 기본 정보 CSV
+    │   │   └── region_info.tsv     # 특산물/축제/관광지 TSV
+    │   └── application.yml         # DB 및 서버 설정
+    └── webapp/                     # 참고용 (실제 JSP 파일은 META-INF/resources/에 있음)
 
 간소화                    
 src/main/java/com/somyeol/cityforecast/
