@@ -16,28 +16,40 @@
 - **TOP 10 분석**: 인구 감소율이 가장 높은 10개 지역 분석 및 그래프 제공
 - **지역 상세 정보**: 각 지역의 특산물, 축제, 관광지 정보 제공
 - **관심 지역 관리**: 원하는 지역을 북마크하여 쉽게 접근
-
+- **강원도 지역 한정(베타테스트)**: 1박 2일 or 3박 4일 여행 코스 제공
+<br><br>
 ## 🖼️ 스크린샷
 
 ### 메인 지도 화면
 ![image](https://github.com/user-attachments/assets/7aa2d989-88d3-4d01-b732-09deddaa3cd1)
 <br>
 ![image](https://github.com/user-attachments/assets/2f071d17-2a0a-44da-8173-1cf602c3235e)
-
+<br><br><br>
 
 
 
 ### 지역 상세 정보
 ![image](https://github.com/user-attachments/assets/f3d88e2c-f2f0-443a-a66d-7907a3263263)
 
-
+<br><br><br>
 ### TOP 10 분석 화면
 ![image](https://github.com/user-attachments/assets/d074cc2f-2018-4510-ba99-84d1531a336c)
 <br>
 ![image](https://github.com/user-attachments/assets/bff2b57f-2434-46a6-9ea6-ce9f2c372058)
 
+<br><br><br>
+### 여행 코스 제공 화면(ex. 양구 1박 2일 코스)
+![image](https://github.com/user-attachments/assets/c5cebf9b-37bc-4246-931c-6cf825a7830b)
+<br>
+![image](https://github.com/user-attachments/assets/07bedef6-bbe2-4b7c-a222-46d56b7768f8)
+<br>
+![image](https://github.com/user-attachments/assets/25a8ad7c-5b24-4d53-857e-659774c42d1f)
+<br>
+![image](https://github.com/user-attachments/assets/e9c90131-f63e-4e3b-b081-898440b25387)
 
 
+
+<br><br><br>
 ### 북마크 기능
 ![image](https://github.com/user-attachments/assets/0efdee1d-60f7-48f7-b542-0af090567ffe)
 
@@ -86,7 +98,7 @@ PC부터 모바일까지 다양한 디바이스에서 최적화된 경험을 제
 - 인구 소멸 대응 방안 정보 제공
 - 지역별 귀농/귀촌 정보 연계
 - 사용자 참여형 지역 정보 업데이트
-- 지역 힐링 코스 계획 (ex. 1박 2일 or 3박 4일 코스 짜주기)
+- 지역 힐링 코스 계획 전국적으로 확대
 
 ## 📝 데이터 출처
 
