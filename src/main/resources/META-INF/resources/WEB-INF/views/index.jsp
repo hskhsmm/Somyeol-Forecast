@@ -10,6 +10,8 @@
     <!-- 부트스트랩 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- 나머지 코드는 동일 -->
+
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
@@ -235,5 +237,7 @@
 <script src="/js/map.js"></script>
 <script src="/js/chart.js"></script>
 <script src="/js/bookmark.js"></script>
+<!-- 여행 코스 추천 기능 JavaScript -->
+<script src="/js/travel.js"></script>
 </body>
 </html>

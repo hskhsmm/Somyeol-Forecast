@@ -245,5 +245,7 @@
 <script src="/js/chart.js"></script>
 <script src="/js/bookmark.js"></script>
 <script src="/js/top10.js"></script>
+<!-- 여행 코스 추천 기능 JavaScript -->
+<script src="/js/travel.js"></script>
 </body>
 </html>
