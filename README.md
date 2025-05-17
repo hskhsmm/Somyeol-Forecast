@@ -38,7 +38,7 @@
 ![image](https://github.com/user-attachments/assets/bff2b57f-2434-46a6-9ea6-ce9f2c372058)
 
 <br><br><br>
-### 여행 코스 제공 화면(ex. 양구 1박 2일 코스)
+### 여행 코스 제공 화면(ex. 양구 1박 2일 코스. mock 데이터 js로)
 ![image](https://github.com/user-attachments/assets/c5cebf9b-37bc-4246-931c-6cf825a7830b)
 <br>
 ![image](https://github.com/user-attachments/assets/07bedef6-bbe2-4b7c-a222-46d56b7768f8)
