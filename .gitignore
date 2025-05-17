@@ -1,6 +1,10 @@
 # Application Configuration Files
 src/main/resources/application.yml
 
+# Exclude travel.js from version control
+src/main/resources/static/js/travel.js
+
+
 HELP.md
 .gradle
 build/
@@ -38,3 +42,5 @@ out/
 
 ### VS Code ###
 .vscode/
+
+
