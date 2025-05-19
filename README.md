@@ -8,6 +8,11 @@
 
 한국은 급속한 고령화와 저출산으로 인해 지방 인구 감소 문제가 심각해지고 있습니다. 소멸예보제는 이러한 인구 데이터를 분석하여 각 지역의 소멸 위험도를 시각화하고, 소멸 예상 시점을 예측합니다. 또한 지역 활성화를 위한 특산물, 축제, 관광지 정보를 함께 제공하여 지방 소멸 문제에 대한 인식을 높이고자 합니다.
 
+
+### 개발 기간
+(2025. 05. 09 ~ 2025. 05. 18)
+<br>
+
 ### 주요 기능
 
 - **인구 감소율 기반 소멸 예측**: 50년간의 인구 데이터를 바탕으로 각 지역의 소멸 예상 연도 계산
@@ -38,7 +43,7 @@
 ![image](https://github.com/user-attachments/assets/bff2b57f-2434-46a6-9ea6-ce9f2c372058)
 
 <br><br><br>
-### 여행 코스 제공 화면(ex. 양구 1박 2일 코스. mock 데이터 js로)
+### 여행 코스 제공 화면(ex. 양구 1박 2일 코스)
 ![image](https://github.com/user-attachments/assets/c5cebf9b-37bc-4246-931c-6cf825a7830b)
 <br>
 ![image](https://github.com/user-attachments/assets/07bedef6-bbe2-4b7c-a222-46d56b7768f8)
